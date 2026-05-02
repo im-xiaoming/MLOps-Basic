@@ -5,7 +5,7 @@ stages:
     deps:
     - path: data/raw/iris.csv
       hash: md5
-      md5: 717820ef0af287ff346c5cabfb4c612c
+      md5: 48afd48d07ca8e363cb82ef023b7cd24
       size: 5107
     - path: src/preprocess.py
       hash: md5
@@ -18,14 +18,14 @@ stages:
     outs:
     - path: data/preprocessed/iris_preprocessed.csv
       hash: md5
-      md5: 3e36d2338974fb7b195d6ccbebaedcf9
+      md5: 1785644bc3ebb6d6a04c17f2ddb90c0e
       size: 2762
   train:
     cmd: python3 src/train.py
     deps:
     - path: data/preprocessed/iris_preprocessed.csv
       hash: md5
-      md5: 3e36d2338974fb7b195d6ccbebaedcf9
+      md5: 1785644bc3ebb6d6a04c17f2ddb90c0e
       size: 2762
     - path: src/train.py
       hash: md5
@@ -48,9 +48,9 @@ stages:
     outs:
     - path: models/iris_model.pkl
       hash: md5
-      md5: 0cd9065151c7f61b9bfd860d3fc1b8fe
-      size: 164561
+      md5: 3865a34b2cd0a476badcb19aaae9da16
+      size: 171617
     - path: models/scaler.pkl
       hash: md5
-      md5: ab662d3dfa922dbe0d5a05b9ccd01a73
+      md5: 437a5162b170daf125e4c439bf27a3d7
       size: 711
