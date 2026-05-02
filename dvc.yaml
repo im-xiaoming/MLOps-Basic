@@ -1,0 +1,23 @@
+stages:
+  preprocess:
+    cmd: python3 src/preprocess.py
+    deps:
+    - data/raw/iris.csv
+    - src/preprocess.py
+    params:
+    - preprocess.input
+    - preprocess.output
+    outs:
+    - data/preprocessed/iris_preprocessed.csv
+  train:
+    cmd: python3 src/train.py
+    deps:
+    - data/preprocessed/iris_preprocessed.csv
+    - src/train.py
+    params:
+    - train.data_path
+    - train.model_path
+    - train.parameters
+    outs:
+    - models/iris_model.pkl
+    - models/scaler.pkl

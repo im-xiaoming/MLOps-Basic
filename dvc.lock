@@ -1,0 +1,56 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python3 src/preprocess.py
+    deps:
+    - path: data/raw/iris.csv
+      hash: md5
+      md5: 717820ef0af287ff346c5cabfb4c612c
+      size: 5107
+    - path: src/preprocess.py
+      hash: md5
+      md5: 1976f3dcade60a84eeb56615403fd25b
+      size: 627
+    params:
+      params.yaml:
+        preprocess.input: data/raw/iris.csv
+        preprocess.output: data/preprocessed/iris_preprocessed.csv
+    outs:
+    - path: data/preprocessed/iris_preprocessed.csv
+      hash: md5
+      md5: 3e36d2338974fb7b195d6ccbebaedcf9
+      size: 2762
+  train:
+    cmd: python3 src/train.py
+    deps:
+    - path: data/preprocessed/iris_preprocessed.csv
+      hash: md5
+      md5: 3e36d2338974fb7b195d6ccbebaedcf9
+      size: 2762
+    - path: src/train.py
+      hash: md5
+      md5: 9c6106006379377bf55dbc8d08b804dd
+      size: 4385
+    params:
+      params.yaml:
+        train.data_path: data/preprocessed/iris_preprocessed.csv
+        train.model_path: models/iris_model.pkl
+        train.parameters:
+          rf_max_depth:
+            min: 2
+            max: 10
+          rf_n_estimators:
+            min: 50
+            max: 200
+          rf_max_features:
+            min: 0.1
+            max: 1.0
+    outs:
+    - path: models/iris_model.pkl
+      hash: md5
+      md5: 0cd9065151c7f61b9bfd860d3fc1b8fe
+      size: 164561
+    - path: models/scaler.pkl
+      hash: md5
+      md5: ab662d3dfa922dbe0d5a05b9ccd01a73
+      size: 711
